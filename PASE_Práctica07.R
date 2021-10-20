@@ -28,3 +28,31 @@ error <- function(r, n, lbd){
 }
 
 #Ejercicio 2
+
+make_conv <- function(r, n, p){
+  norm = c()
+  bin = c()
+  for (x in 0:n){
+    norm = c(norm, dnorm(x = x, mean = n*p, sd = sqrt(n*p*(1-p))))
+    bin = c(bin, dbinom(x,n,p))
+  }
+  
+  plot(bin, type='s', col='red')
+  lines(norm, type='s', col='blue')
+}
+
+
+make_conv(r, 100, 0.1)
+
+make_errorconv <- function(r, n, p){
+  bin = c()
+  norm = c()
+  for (x in 0:n){
+    norm = c(norm, dnorm(x = x, mean = n*p, sd = sqrt(n*p*(1-p))))
+    bin = c(bin, dbinom(x,n,p))
+  }
+  max = abs(norm-bin)
+  plot(max)
+}
+
+make_errorconv(r, 100, 0.1)
